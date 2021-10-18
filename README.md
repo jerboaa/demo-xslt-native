@@ -5,7 +5,7 @@ Derived from reproducer of https://github.com/oracle/graal/issues/3811
 ## Interpretive Xalan
 
 ```
-$ make --trace xmlformatter GRAAL=/path/to/graalvm
+$ make --trace xmlformatter GRAALVM=/path/to/graalvm
 $ ./xslt-app-1.0 test.xml
 xlst = java.io.ByteArrayInputStream@3846ae69
 ```
