@@ -13,7 +13,7 @@ xmlformatter: cfg
 	$(GRAALVM)/bin/native-image --verbose -H:ConfigurationFileDirectories=cfg -H:+AllowIncompleteClasspath -J-Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl -jar $(JAR)
 
 xmlformatter-xsltc: cfg-xsltc
-	$(GRAALVM)/bin/native-image --verbose --no-fallback -H:ConfigurationFileDirectories=cfg-xsltc -H:+AllowIncompleteClasspath -J-Djavax.xml.transform.TransformerFactory=org.apache.xalan.xsltc.trax.TransformerFactoryImpl -jar $(JAR)
+	$(GRAALVM)/bin/native-image --verbose --no-fallback -H:IncludeResourceBundles="org.apache.xml.res.XMLErrorResources,org.apache.xalan.res.XSLTErrorResources" -H:ConfigurationFileDirectories=cfg-xsltc -H:+AllowIncompleteClasspath -J-Djavax.xml.transform.TransformerFactory=org.apache.xalan.xsltc.trax.TransformerFactoryImpl -jar $(JAR)
 
 
 clean:
