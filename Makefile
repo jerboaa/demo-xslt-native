@@ -10,7 +10,8 @@ cfg-xsltc-jdk: $(JAR)
 	$(GRAALVM)/bin/java -agentlib:native-image-agent=config-output-dir=cfg-xsltc,experimental-class-define-support -jar $(JAR) test.xml
 
 xmlformatter-xsltc-jdk: cfg-xsltc-jdk
-	$(GRAALVM)/bin/native-image --verbose --no-fallback -H:ConfigurationFileDirectories=cfg-xsltc -H:+AllowIncompleteClasspath -jar $(JAR)
+	$(GRAALVM)/bin/native-image --verbose -J--add-exports=java.xml/com.sun.org.apache.xalan.internal.xsltc.runtime=ALL-UNNAMED \
+	-J--add-exports=java.xml/com.sun.org.apache.xalan.internal.xsltc=ALL-UNNAMED --no-fallback -H:ConfigurationFileDirectories=cfg-xsltc -H:+AllowIncompleteClasspath -jar $(JAR)
 
 clean:
 	rm -rf target cfg cfg-xsltc dependency-reduced-pom.xml xslt-app*
